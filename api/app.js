@@ -5,7 +5,8 @@ import cookieParser from 'cookie-parser';
 import { errorHandler } from './utils/errHandler.js';
 
 import connectToDB from './db/dbConnection.js';
-import userLogin from "./routes/userRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 env.config();
 
@@ -22,7 +23,8 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true })); 
 
 // Routes
-app.use('/api', userLogin);
+app.use('/api', authRoutes);
+app.use('/api',userRoutes);
 
 // Global error handler
 app.use((err, req, res, next) => {
